@@ -1,6 +1,8 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const Header = () => {
+  const loginStatus = useSelector((state: RootState) => state.auth.status);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -14,9 +16,7 @@ const Header = () => {
           <li>
             <a>Profile</a>
           </li>
-          <li>
-            <a>Login</a>
-          </li>
+          <li>{loginStatus ? <a>LogOut</a> : <a>LogIn</a>}</li>
         </ul>
       </div>
     </div>
