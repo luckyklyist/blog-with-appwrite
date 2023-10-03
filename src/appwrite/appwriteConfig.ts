@@ -83,6 +83,19 @@ export class Services {
       throw error;
     }
   }
+
+  async deletePosts(id: string) {
+    try {
+      const post = await this.databases.deleteDocument(
+        config.appwriteDataBaseId,
+        config.appwriteCollectionId,
+        id
+      );
+      return post;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const service = new Services();
