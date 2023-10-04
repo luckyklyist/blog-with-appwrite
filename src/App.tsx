@@ -1,8 +1,15 @@
 import "./App.css";
-import config from "./config/config";
+import authservice from "./appwrite/auth";
+import Login from "./components/Login";
+import SingUp from "./components/SignUp";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Login />
+      <SingUp />
+    </div>
+  );
 }
 
 export default App;

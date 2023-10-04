@@ -1,32 +1,26 @@
-import authService from "../appwrite/auth";
+import React from "react";
+import autheService from "../appwrite/auth";
 import { LogOutButton, Input } from "./index";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../features/auth/authSlice";
 
 interface IFormInput {
+  name: string;
   email: string;
   password: string;
 }
 
-const Login = () => {
+const SingUp = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm<IFormInput>();
 
-  const login = async (data: IFormInput) => {
+  const signUp = async (data: IFormInput) => {
     try {
-      // TODO define the userLogin resp type
-      const userLogin = await authService.loginUser(data);
-      if (userLogin) {
-        const userSession = await authService.getUserSession();
-        let userInfo = {
-          email: userSession.email,
-          name: userSession.name,
-        };
-        console.log(userInfo);
-        dispatch(loginUser({ userInfo }));
+      const userSignUp = await autheService.registerUser(data);
+      if (userSignUp) {
+        // TODO navigate them to the Login Page
       }
     } catch (error) {
       console.log(error);
@@ -36,9 +30,16 @@ const Login = () => {
   return (
     <div className="p-8">
       <form
-        onSubmit={handleSubmit(login)}
+        onSubmit={handleSubmit(signUp)}
         className="rounded px-8 pt-6 pb-8 mb-4"
       >
+        <Input
+          label="Name"
+          type="text"
+          placeholder="Enter your Name"
+          className="form-input"
+          {...register("name", { required: true })}
+        />
         <Input
           label="Email"
           type="email"
@@ -56,7 +57,7 @@ const Login = () => {
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5 ml-8"
           type="submit"
         >
-          Login
+          SingUp
         </button>
       </form>
       <LogOutButton />
@@ -64,4 +65,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SingUp;
