@@ -13,6 +13,11 @@ interface IFormInput {
 const Login = () => {
   const dispatch = useDispatch();
 
+  const getUserSession = async () => {
+    const userLogin = await authService.getUserSession();
+    console.log(userLogin, "this is the user sessions");
+  };
+  getUserSession();
   const { register, handleSubmit } = useForm<IFormInput>();
 
   const login = async (data: IFormInput) => {
