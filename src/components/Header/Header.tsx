@@ -29,7 +29,9 @@ const Header = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">KlyistBlog </a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          KlyistBlog{" "}
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
@@ -37,7 +39,7 @@ const Header = () => {
             return (
               item.status && (
                 <li key={item.name}>
-                  <a href={item.link}>{item.name}</a>
+                  <Link to={item.link}>{item.name}</Link>
                 </li>
               )
             );

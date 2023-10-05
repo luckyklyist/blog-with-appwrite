@@ -4,15 +4,13 @@ import Login from "./components/Login";
 import RTE from "./components/RTE";
 import SingUp from "./components/SignUp";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "./features/auth/authSlice";
-import { RootState } from "./store/store";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   const dispatch = useDispatch();
-  const { email, name } = useSelector(
-    (state: RootState) => state.auth.userInfo
-  );
 
   React.useEffect(() => {
     const setUserSessionSet = async () => {
@@ -28,15 +26,12 @@ function App() {
     setUserSessionSet();
   }, []);
   return (
-    <div>
-      <div className="p-6">
-        <h1 className="text-xl font-bold">Welcome to Appwrite</h1>
-        <h1 className="text-xl font-bold">{email}</h1>
-        <h1 className="text-xl font-bold">{name}</h1>
-      </div>
-      {/* <RTE /> */}
-      <Login />
-      <SingUp />
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SingUp />} />
+      </Routes>
     </div>
   );
 }

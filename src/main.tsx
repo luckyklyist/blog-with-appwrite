@@ -5,12 +5,13 @@ import "./index.css";
 import Header from "./components/Header/Header.tsx";
 import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <Header />
       <App />
-    </Provider>
-  </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
 );
