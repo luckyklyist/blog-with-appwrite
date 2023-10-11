@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "./features/auth/authSlice";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Blogs from "./components/Blogs";
+import Blog from "./components/Blog";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SingUp />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:id" element={<Blog />} />
       </Routes>
     </div>
   );
