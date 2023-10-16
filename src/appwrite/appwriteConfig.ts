@@ -96,6 +96,19 @@ export class Services {
       throw error;
     }
   }
+
+  async uploadImage(file: File) {
+    try {
+      const storageFile = await this.storage.createFile(
+        "[BUCKET_ID]",
+        ID.unique(),
+        file
+      );
+      return storageFile;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const service = new Services();

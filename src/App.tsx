@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Blogs from "./components/Blogs";
 import Blog from "./components/Blog";
+import CreateBlog from "./components/CreateBlog";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup" element={<SingUp />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/create" element={<CreateBlog />} />
       </Routes>
     </div>
   );
