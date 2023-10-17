@@ -6,31 +6,43 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";
 
-interface Blog {
+interface Posts {
+  $id: string;
   title: string;
-  description: string;
   slug: string;
+  description: string;
+  post_image: File | null;
 }
 
-const CreateBlog = ({ post }: { post?: Blog }) => {
-  const { register, handleSubmit, watch, setValue, control, getValues } =
-    useForm<Blog>({
-      defaultValues: {
-        title: post?.title || "",
-        description: post?.description || "",
-        slug: post?.slug || "",
-      },
-    });
-  const navigate = useNavigate();
-  const userData = useSelector((state: RootState) => state.auth.userInfo);
+interface CreatePosts {
+  title: string;
+  slug: string;
+  description: string;
+  post_image: File | null;
+}
 
-  const onSubmit = async (data: Blog) => {
-    console.log(data);
+const CreateBlog = ({ post }: { post?: Posts }) => {
+  const navigate = useNavigate();
+  const { register, handleSubmit, watch, control } = useForm<CreatePosts>({
+    defaultValues: {
+      title: post?.title || "",
+      slug: post?.slug || "",
+      description: post?.description || "",
+      post_image: post?.post_image || null,
+    },
+  });
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
+
+  const onSubmit = async (data: CreatePosts) => {
+    if (post) {
+    } else {
+    }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="text-2xl mt-4 font-bold text-center">Create Blogs</div>
+      <form onSubmit={handleSubmit(onSubmit)} className="ml-32">
         <Input
           label="Title"
           {...register("title", { required: true })}
@@ -43,6 +55,12 @@ const CreateBlog = ({ post }: { post?: Blog }) => {
           {...register("slug", { required: true })}
           placeholder="Enter Slug"
         />
+        <Input
+          label="Image"
+          placeholder="Upload Post Image"
+          type="File"
+          {...register("post_image")}
+        />
         <RTE
           label="Description"
           {...register("description", { required: true })}
@@ -51,7 +69,10 @@ const CreateBlog = ({ post }: { post?: Blog }) => {
           defaultValue="hello"
           key={"yes"}
         />
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="btn btn-primary my-6 mx-8">
+          Submit
+        </button>
       </form>
     </div>
   );

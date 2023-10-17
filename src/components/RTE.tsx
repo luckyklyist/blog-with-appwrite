@@ -16,7 +16,7 @@ const RTE: React.FC<RTEprops> = ({
   defaultValue = "",
 }) => {
   return (
-    <div>
+    <div className="w-[70vw] mx-8">
       {label && <label htmlFor={name}>{label}</label>}
       <Controller
         name={name}
