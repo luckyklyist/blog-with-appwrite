@@ -27,14 +27,17 @@ const Header = () => {
     },
   ];
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          KlyistBlog{" "}
+    <div className="navbar bg-black ">
+      <div className="flex-1 ml-10">
+        <Link
+          to="/"
+          className="text-2xl font-bold italic text-yellow-600 underline"
+        >
+          KlyistBlog
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 mr-10">
           {navItems.map((item) => {
             return (
               item.status && (
