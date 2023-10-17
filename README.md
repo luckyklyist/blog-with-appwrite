@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Blog App (Initial Phase)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Blog App, a simple blogging platform built with Appwrite and React. This project is currently in its initial phase and serves as a starting point for developing a full-fledged demo blogging application.
 
-Currently, two official plugins are available:
+## Features (planned)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration and authentication
+- Create, edit, and delete blog posts
+- Comment on blog posts
+- User profile pages
+- User-friendly UI and responsive design
+- Search functionality
+- Post likes
+- And much more!
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone this repository to your local machine.
+2. Install the required dependencies by running `pnpm install`.
+3. Configure your Appwrite instance by updating the `appwriteConfig.js` file.
+4. Run the development server with `pnpm run dev`.
 
-- Configure the top-level `parserOptions` property like this:
+Please note that this project is a work in progress, and additional features and improvements will be added in subsequent phases.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Contribution
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Contributions are welcome! If you'd like to contribute to the development of this project, please open an issue or submit a pull request.
