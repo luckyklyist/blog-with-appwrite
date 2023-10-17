@@ -61,6 +61,18 @@ export class AuthService {
       throw error;
     }
   }
+
+  async googleLogin() {
+    try {
+      return this.account.createOAuth2Session(
+        "google",
+        "http://localhost:5173/",
+        "http://localhost:5173/login"
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const authservice = new AuthService();

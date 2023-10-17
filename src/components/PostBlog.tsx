@@ -79,12 +79,12 @@ const PostBlog = ({ post }: { post?: Posts }) => {
           placeholder="Enter Title"
           type="text"
         />
-        <Input
+        {/* <Input
           label="Slug"
           type="text"
           {...register("slug", { required: true })}
           placeholder="Enter Slug"
-        />
+        /> */}
         <Input
           label="Image"
           placeholder="Upload Post Image"
@@ -96,6 +96,7 @@ const PostBlog = ({ post }: { post?: Posts }) => {
           {...register("description", { required: true })}
           control={control}
           name="description"
+          defaultValue={post?.description}
         />
 
         <button type="submit" className="btn btn-primary my-6 mx-8">

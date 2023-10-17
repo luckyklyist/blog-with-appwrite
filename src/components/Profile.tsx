@@ -63,9 +63,9 @@ const ProfilePage = () => {
               className="bg-slate-800 p-4 mb-4 rounded-lg relative"
             >
               <h3 className="text-xl font-semibold text-blue-500">
-                {blog?.title}
+                <Link to={`/blog/${blog.$id}`}>{blog?.title}</Link>
               </h3>
-              <p className="text-gray-700">{blog?.description}</p>
+              {/* <p className="text-gray-700">{blog?.description}</p> */}
               <div className="absolute top-0 right-0 mt-2 mr-2 space-x-2">
                 <button className="text-sm bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600">
                   <Link to={`/edit/${blog.$id}`}>Edit</Link>

@@ -1,6 +1,6 @@
 import authService from "../appwrite/auth";
 import { LogOutButton, Input } from "./index";
-import { useForm } from "react-hook-form";
+import { FormState, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authSlice";
@@ -20,9 +20,12 @@ const Login = () => {
   getUserSession();
   const { register, handleSubmit } = useForm<IFormInput>();
 
+  const googleLogin = async () => {
+    await authService.googleLogin();
+  };
+
   const login = async (data: IFormInput) => {
     try {
-      // TODO define the userLogin resp type
       const userLogin = await authService.loginUser(data);
       if (userLogin) {
         const userSession = await authService.getUserSession();
@@ -65,7 +68,19 @@ const Login = () => {
           Login
         </button>
       </form>
-      <LogOutButton />
+      <div>
+        <button
+          className="bg-slate-900 p-4 rounded-lg shadow-md flex items-center space-x-2 transition duration-300 transform hover:scale-105 hover:shadow-lg my-5 mx-10"
+          onClick={() => googleLogin()}
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            alt="Google Logo"
+            className="w-6 h-6"
+          />
+          <span className="text-gray-700 font-semibold">Login with Google</span>
+        </button>
+      </div>
     </div>
   );
 };
