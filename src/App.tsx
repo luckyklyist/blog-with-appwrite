@@ -1,7 +1,6 @@
 import "./App.css";
 import authservice from "./appwrite/auth";
 import Login from "./components/Login";
-import RTE from "./components/RTE";
 import SingUp from "./components/SignUp";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -10,7 +9,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Blogs from "./components/Blogs";
 import Blog from "./components/Blog";
+import Profile from "./components/Profile";
 import CreateBlog from "./components/CreateBlog";
+import EditBlog from "./components/EditBlog";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,8 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/create" element={<CreateBlog />} />
+        <Route path="/edit/:blogId" element={<EditBlog />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
