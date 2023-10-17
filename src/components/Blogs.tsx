@@ -5,10 +5,12 @@ interface Blog {
   id: string;
   title: string;
   content: string;
+  blog_image: string;
 }
 
 const Blogs = () => {
   const [blogList, setBlogList] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     async function getPosts() {
       const documentList = await service.getPosts();
@@ -17,12 +19,15 @@ const Blogs = () => {
           id: doc["$id"],
           title: doc.title,
           content: doc.description,
+          blog_image: doc.post_image,
         };
       });
+      setLoading(false);
       setBlogList(blogList);
     }
     getPosts();
   }, []);
+
   return (
     <div>
       {blogList.map((blog) => {
@@ -32,7 +37,7 @@ const Blogs = () => {
             key={blog.id}
           >
             <figure>
-              <img src="https://picsum.photos/id/1005/400/250" alt="Shoes" />
+              <img src="" alt="Shoes" />
             </figure>
             <div className="card-body">
               <h2 className="card-title">
