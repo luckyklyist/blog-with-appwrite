@@ -96,8 +96,6 @@ const PostBlog = ({ post }: { post?: Posts }) => {
           {...register("description", { required: true })}
           control={control}
           name="description"
-          defaultValue="hello"
-          key={"yes"}
         />
 
         <button type="submit" className="btn btn-primary my-6 mx-8">
