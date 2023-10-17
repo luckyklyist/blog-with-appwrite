@@ -15,6 +15,8 @@ const EditBlog = () => {
     getBlog();
   }, [blogId]);
 
+  console.log(editBlog, "this is edit blog");
+
   return (
     <div>
       <div className="text-2xl mt-4 font-bold text-center">Edit Blogs</div>
