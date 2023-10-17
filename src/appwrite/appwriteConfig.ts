@@ -11,13 +11,13 @@ interface Post {
 export class Services {
   client = new Client();
   databases;
-  storage;
+  bucket;
   constructor() {
     this.client
       .setEndpoint(config.appwriteEndpoint)
       .setProject(config.appwriteProjectId);
     this.databases = new Databases(this.client);
-    this.storage = new Storage(this.client);
+    this.bucket = new Storage(this.client);
   }
 
   async getPosts() {
@@ -25,6 +25,18 @@ export class Services {
       return await this.databases.listDocuments(
         config.appwriteDataBaseId,
         config.appwriteCollectionId
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getPostsByUserId(userId: string) {
+    try {
+      return await this.databases.listDocuments(
+        config.appwriteDataBaseId,
+        config.appwriteCollectionId,
+        [Query.equal("userId", userId)]
       );
     } catch (error) {
       throw error;
@@ -99,7 +111,7 @@ export class Services {
 
   async uploadImage(file: File) {
     try {
-      const storageFile = await this.storage.createFile(
+      const storageFile = await this.bucket.createFile(
         config.appwriteBucketId,
         ID.unique(),
         file
@@ -112,7 +124,7 @@ export class Services {
 
   async deleteImage(fileId: string) {
     try {
-      const storageFile = await this.storage.deleteFile(
+      const storageFile = await this.bucket.deleteFile(
         config.appwriteBucketId,
         fileId
       );
@@ -122,13 +134,21 @@ export class Services {
     }
   }
 
-  async getFilePreview(fileId: string) {
+  getFilePreview(fileId: string) {
     try {
-      const storageFile = await this.storage.getFilePreview(
+      const storageFile = this.bucket.getFilePreview(
         config.appwriteBucketId,
         fileId
       );
       return storageFile;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  getFileDownload(fileID: string) {
+    try {
+      return this.bucket.getFileDownload(config.appwriteBucketId, fileID);
     } catch (error) {
       throw error;
     }
