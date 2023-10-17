@@ -100,9 +100,33 @@ export class Services {
   async uploadImage(file: File) {
     try {
       const storageFile = await this.storage.createFile(
-        "[BUCKET_ID]",
+        config.appwriteBucketId,
         ID.unique(),
         file
+      );
+      return storageFile;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteImage(fileId: string) {
+    try {
+      const storageFile = await this.storage.deleteFile(
+        config.appwriteBucketId,
+        fileId
+      );
+      return storageFile;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getFilePreview(fileId: string) {
+    try {
+      const storageFile = await this.storage.getFilePreview(
+        config.appwriteBucketId,
+        fileId
       );
       return storageFile;
     } catch (error) {
