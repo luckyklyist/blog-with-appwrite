@@ -1,8 +1,6 @@
-import React from "react";
 import autheService from "../appwrite/auth";
 import { LogOutButton, Input } from "./index";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
@@ -12,7 +10,8 @@ interface IFormInput {
 }
 
 const SingUp = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<IFormInput>();
 
@@ -20,7 +19,7 @@ const SingUp = () => {
     try {
       const userSignUp = await autheService.registerUser(data);
       if (userSignUp) {
-        // TODO navigate them to the Login Page
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);

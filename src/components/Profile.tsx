@@ -8,7 +8,7 @@ const ProfilePage = () => {
   const { email, name } = useSelector(
     (state: RootState) => state.auth.userInfo
   );
-  const [blogs, setBlogs] = React.useState([]);
+  const [blogs, setBlogs] = React.useState<any[]>([]);
   React.useEffect(() => {
     async function myBlogs() {
       const fetchBlogs = await service.getPostsByUserId(email);
@@ -53,30 +53,35 @@ const ProfilePage = () => {
         <div className="text-xl my-4 mx-2 italic font-bold underline">
           Your Blogs
         </div>
-        {blogs.map((blog, index) => (
-          <div
-            key={index}
-            className="bg-slate-800 p-4 mb-4 rounded-lg relative"
-          >
-            <h3 className="text-xl font-semibold text-blue-500">
-              {blog?.title}
-            </h3>
-            <p className="text-gray-700">{blog?.description}</p>
-            <div className="absolute top-0 right-0 mt-2 mr-2 space-x-2">
-              <button className="text-sm bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600">
-                <Link to={`/edit/${blog.$id}`}>Edit</Link>
-              </button>
-              <button
-                className="text-sm bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-                onClick={() => {
-                  deletePost(blog.$id);
-                }}
-              >
-                Delete
-              </button>
+        {blogs.map(
+          (
+            blog: { $id: string; title: string; description: string },
+            index
+          ) => (
+            <div
+              key={index}
+              className="bg-slate-800 p-4 mb-4 rounded-lg relative"
+            >
+              <h3 className="text-xl font-semibold text-blue-500">
+                {blog?.title}
+              </h3>
+              <p className="text-gray-700">{blog?.description}</p>
+              <div className="absolute top-0 right-0 mt-2 mr-2 space-x-2">
+                <button className="text-sm bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600">
+                  <Link to={`/edit/${blog.$id}`}>Edit</Link>
+                </button>
+                <button
+                  className="text-sm bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                  onClick={() => {
+                    deletePost(blog.$id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
     </div>
   );

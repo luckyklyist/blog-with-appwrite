@@ -1,6 +1,6 @@
 import React from "react";
 import service from "../appwrite/appwriteConfig";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input, RTE } from "./index";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -23,8 +23,7 @@ interface CreatePosts {
 
 const PostBlog = ({ post }: { post?: Posts }) => {
   const navigate = useNavigate();
-  const { register, handleSubmit, watch, control, setValue } =
-    useForm<CreatePosts>();
+  const { register, handleSubmit, control, setValue } = useForm<CreatePosts>();
   const userInfo = useSelector((state: RootState) => state.auth.userInfo);
 
   const onSubmit = async (data: CreatePosts) => {
@@ -32,6 +31,7 @@ const PostBlog = ({ post }: { post?: Posts }) => {
       const image = data.post_image[0];
       if (image) {
         await service.deleteImage(post.post_image);
+        // @ts-ignore
         const uploadImage = await service.uploadImage(image);
         data.post_image = uploadImage.$id;
       }
@@ -49,6 +49,7 @@ const PostBlog = ({ post }: { post?: Posts }) => {
     } else {
       const image = data.post_image[0];
       if (image) {
+        // @ts-ignore
         const uploadImage = await service.uploadImage(image);
         data.post_image = uploadImage.$id;
       }

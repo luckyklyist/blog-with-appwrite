@@ -1,8 +1,7 @@
-import React from "react";
 import arch from "../assets/arch.png";
 import Blogs from "../components/Blogs";
-import Footer from "../components/Footer";
 import About from "../components/About";
+import Contact from "./Contact";
 
 const Home = () => {
   return (
@@ -27,7 +26,7 @@ const Home = () => {
         <Blogs />
       </div>
       <About />
-      <Footer />
+      <Contact />
     </div>
   );
 };

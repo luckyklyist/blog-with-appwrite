@@ -12,7 +12,7 @@ interface IFormInput {
 
 const Login = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const getUserSession = async () => {
     const userLogin = await authService.getUserSession();
     console.log(userLogin, "this is the user sessions");
@@ -32,6 +32,7 @@ const Login = () => {
         };
         console.log(userInfo);
         dispatch(loginUser({ userInfo }));
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

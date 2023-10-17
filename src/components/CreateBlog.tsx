@@ -1,4 +1,3 @@
-import React from "react";
 import PostBlog from "./PostBlog";
 
 const CreateBlog = () => {
