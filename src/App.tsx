@@ -18,14 +18,17 @@ function App() {
 
   React.useEffect(() => {
     const setUserSessionSet = async () => {
-      const userSession = await authservice.getUserSession();
-      if (userSession) {
-        let userInfo = {
-          email: userSession.email,
-          name: userSession.name,
-        };
-        dispatch(loginUser({ userInfo }));
-      }
+      // const userSession = await authservice.getUserSession();
+      // if (userSession) {
+      //   let userInfo = {
+      //     email: userSession.email,
+      //     name: userSession.name,
+      //   };
+      //   dispatch(loginUser({ userInfo }));
+      // }
+      console.log("this is the github sessions");
+      const githubSession = await authservice.getAccount();
+      console.log(githubSession);
     };
     setUserSessionSet();
   }, []);
