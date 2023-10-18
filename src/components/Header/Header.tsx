@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { Link } from "react-router-dom";
+import { LogOutButton } from "..";
 
 const Header = () => {
   const loginStatus = useSelector((state: RootState) => state.auth.status);
@@ -8,17 +9,12 @@ const Header = () => {
     {
       name: "Blogs",
       link: "/blogs",
-      status: loginStatus,
+      status: true,
     },
     {
       name: "Profile",
       link: "/profile",
       status: loginStatus,
-    },
-    {
-      name: "LogIn",
-      link: "/login",
-      status: !loginStatus,
     },
     {
       name: "SignUp",
@@ -47,7 +43,9 @@ const Header = () => {
               )
             );
           })}
-          <li>{loginStatus ? <a>LogOut</a> : <a>LogIn</a>}</li>
+          <li>
+            {loginStatus ? <LogOutButton /> : <Link to="/login">LogIn</Link>}
+          </li>
         </ul>
       </div>
     </div>

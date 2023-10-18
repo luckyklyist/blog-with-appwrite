@@ -66,9 +66,17 @@ export class AuthService {
     try {
       return this.account.createOAuth2Session(
         "google",
-        "http://localhost:5173/",
+        "http://localhost:5173/blogs",
         "http://localhost:5173/login"
       );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAccount() {
+    try {
+      return this.account.getSession("current");
     } catch (error) {
       throw error;
     }

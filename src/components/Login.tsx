@@ -4,6 +4,7 @@ import { FormState, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authSlice";
+import authservice from "../appwrite/auth";
 
 interface IFormInput {
   email: string;
@@ -22,7 +23,17 @@ const Login = () => {
 
   const googleLogin = async () => {
     await authService.googleLogin();
+    // getUserSessions();
   };
+
+  // async function getUserSessions() {
+  //   console.log("this is the user sessions");
+  //   const session = await authservice.getAccount();
+  //   console.log(session, "this is the user sessions");
+  //   console.log(session.provider, "provider");
+  //   console.log(session.providerUid, "uid");
+  //   console.log(session.providerAccessToken, "token part ");
+  // }
 
   const login = async (data: IFormInput) => {
     try {

@@ -2,6 +2,7 @@ import arch from "../assets/arch.png";
 import Blogs from "../components/Blogs";
 import About from "../components/About";
 import Contact from "./Contact";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -18,7 +19,9 @@ const Home = () => {
               Welcome to KlyistBlog, a place where you can share your thoughts
               and ideas with the world.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary">
+              <Link to="/create">Create blog</Link>
+            </button>
           </div>
         </div>
       </div>
