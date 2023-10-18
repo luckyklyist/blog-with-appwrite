@@ -74,6 +74,18 @@ export class AuthService {
     }
   }
 
+  async githubLogin() {
+    try {
+      return this.account.createOAuth2Session(
+        "github",
+        "http://localhost:5173/blogs",
+        "http://localhost:5173/login"
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getAccount() {
     try {
       return this.account.getSession("current");
