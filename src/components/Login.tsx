@@ -1,10 +1,11 @@
 import authService from "../appwrite/auth";
-import { LogOutButton, Input } from "./index";
-import { FormState, useForm } from "react-hook-form";
+// import { LogOutButton, Input } from "./index";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../features/auth/authSlice";
-import authservice from "../appwrite/auth";
+import { Input } from ".";
+// import authservice from "../appwrite/auth";
 
 interface IFormInput {
   email: string;
