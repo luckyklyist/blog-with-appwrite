@@ -66,8 +66,20 @@ export class AuthService {
     try {
       return this.account.createOAuth2Session(
         "google",
-        "http://localhost:5173/blogs",
-        "http://localhost:5173/login"
+        config.oauthSuccessUrl,
+        config.oauthFailureUrl
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async githubLogin() {
+    try {
+      return this.account.createOAuth2Session(
+        "github",
+        config.oauthSuccessUrl,
+        config.oauthFailureUrl
       );
     } catch (error) {
       throw error;

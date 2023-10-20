@@ -26,6 +26,9 @@ function App() {
         };
         dispatch(loginUser({ userInfo }));
       }
+      const session = await authservice.getAccount();
+      console.log(session);
+      console.log(userSession);
     };
     setUserSessionSet();
   }, []);
