@@ -20,7 +20,7 @@ const Blogs = () => {
           id: doc["$id"],
           title: doc.title,
           content: doc.description,
-          blog_image: doc.post_image,
+          blog_image: String(service.getFilePreview(doc.post_image)),
         };
       });
       setLoading(false);
