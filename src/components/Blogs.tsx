@@ -48,10 +48,18 @@ const Blogs = () => {
                   {blog.title}
                   <span className="badge badge-primary ml-2">NEW</span>
                 </h2>
-                <p className="text-gray-400">
-                  {blog.content.slice(0, 100)}
-                  {blog.content.length > 100 ? "..." : ""}
-                </p>
+                <p
+                  className="text-gray-400"
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content.slice(0, 100),
+                  }}
+                ></p>
+                <p
+                  className="text-gray-400"
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content.length > 100 ? "..." : "",
+                  }}
+                ></p>
                 <a href={`/blog/${blog.id}`} className="btn btn-primary mt-4">
                   Read More
                 </a>
