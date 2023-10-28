@@ -27,7 +27,7 @@ const SingUp = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 ">
       <form
         onSubmit={handleSubmit(signUp)}
         className="rounded px-8 pt-6 pb-8 mb-4"
@@ -59,7 +59,6 @@ const SingUp = () => {
           SingUp
         </button>
       </form>
-      <LogOutButton />
     </div>
   );
 };

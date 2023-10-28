@@ -60,6 +60,20 @@ const PostBlog = ({ post }: { post?: Posts }) => {
         });
     }
   };
+  const [imagePreview, setImagePreview] = React.useState<string | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
+  };
 
   React.useEffect(() => {
     if (post) {
@@ -79,18 +93,17 @@ const PostBlog = ({ post }: { post?: Posts }) => {
           placeholder="Enter Title"
           type="text"
         />
-        {/* <Input
-          label="Slug"
-          type="text"
-          {...register("slug", { required: true })}
-          placeholder="Enter Slug"
-        /> */}
         <Input
           label="Image"
           placeholder="Upload Post Image"
           type="file"
           {...register("post_image")}
+          onChange={handleImageChange}
         />
+        {imagePreview && (
+          <img src={imagePreview} alt="Image Preview" height={200} />
+        )}
+
         <RTE
           label="Description"
           {...register("description", { required: true })}
